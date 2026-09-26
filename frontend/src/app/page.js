@@ -115,6 +115,22 @@ export default function HomePage() {
     loadData();
   }, [page, selectedCategory, selectedBrand, sortBy, searchQuery]);
 
+  // Read URL query params (?search=... or ?category=...) on initial load
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('search');
+      const cat = params.get('category');
+      if (q) {
+        setSearchQuery(q);
+        setTimeout(() => catalogSectionRef.current?.scrollIntoView({ behavior: 'smooth' }), 300);
+      }
+      if (cat) {
+        setSelectedCategory(cat);
+      }
+    }
+  }, []);
+
   const handleAddToCart = (product) => {
     setCartItems(prev => {
       const existing = prev.find(item => item.id === product.id);
@@ -140,10 +156,10 @@ export default function HomePage() {
     catalogSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSearchChange = (query) => {
+  const handleSearchChange = (query, shouldScroll = false) => {
     setSearchQuery(query);
     setPage(1);
-    if (query) {
+    if (shouldScroll && query) {
       catalogSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   };

@@ -82,13 +82,13 @@ export default function FlashDropCountdown({ onAddToCart }) {
         </div>
 
         {/* Live Countdown Display: Black Box with Yellow Digits */}
-        <div className="countdown-box">
+        <div className="countdown-box" suppressHydrationWarning>
           <span style={{ color: '#9CA3AF', fontSize: '0.75rem', marginRight: 4 }}>ENDS IN:</span>
-          <span className="countdown-digit">{String(timeLeft.hours).padStart(2, '0')}h</span>
+          <span className="countdown-digit" suppressHydrationWarning>{String(timeLeft.hours).padStart(2, '0')}h</span>
           <span style={{ color: 'var(--accent-yellow)', fontWeight: 800 }}>:</span>
-          <span className="countdown-digit">{String(timeLeft.minutes).padStart(2, '0')}m</span>
+          <span className="countdown-digit" suppressHydrationWarning>{String(timeLeft.minutes).padStart(2, '0')}m</span>
           <span style={{ color: 'var(--accent-yellow)', fontWeight: 800 }}>:</span>
-          <span className="countdown-digit">{String(timeLeft.seconds).padStart(2, '0')}s</span>
+          <span className="countdown-digit" suppressHydrationWarning>{String(timeLeft.seconds).padStart(2, '0')}s</span>
         </div>
       </div>
 

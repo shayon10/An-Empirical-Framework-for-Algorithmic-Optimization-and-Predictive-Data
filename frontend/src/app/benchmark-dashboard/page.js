@@ -93,7 +93,7 @@ export default function BenchmarkCockpit() {
   return (
     <div style={{ background: '#F8F9FA', minHeight: '100vh', color: '#0A0A0A', paddingBottom: '6rem' }}>
       
-      {/* Top Header Bar (30% Black Luxury Bar - Matches Website Header) */}
+      {/* Top Header Bar (30% Black Luxury Bar - Identical to Website Header) */}
       <div style={{
         background: '#000000',
         color: '#FFFFFF',
@@ -104,25 +104,34 @@ export default function BenchmarkCockpit() {
         boxShadow: '0 2px 15px rgba(0, 0, 0, 0.12)'
       }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', maxWidth: '1300px', margin: '0 auto' }}>
-          <Link href="/" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.4rem',
-            background: 'rgba(255, 255, 255, 0.15)',
-            border: '1px solid rgba(255, 255, 255, 0.25)',
-            padding: '0.45rem 0.95rem',
-            borderRadius: '6px',
-            fontSize: '0.85rem',
-            fontWeight: 700,
-            color: '#FFFFFF'
-          }}>
-            <ArrowLeft size={15} />
-            <span>← Back to Sneaker Store</span>
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+            <Link href="/" className="store-brand" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <span style={{ color: '#FFFFFF', fontWeight: 900 }}>SNEAKER</span>
+              <span style={{ color: 'var(--accent-yellow)', fontWeight: 900 }}>PULSE</span>
+              <span style={{ background: 'var(--accent-green)', color: '#000000', fontSize: '0.65rem', fontWeight: 900, padding: '2px 6px', borderRadius: '4px', letterSpacing: '0.05em' }}>COCKPIT</span>
+            </Link>
+
+            <Link href="/" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              padding: '0.42rem 0.85rem',
+              borderRadius: '6px',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              color: '#FFFFFF',
+              textDecoration: 'none'
+            }}>
+              <ArrowLeft size={14} />
+              <span>Back to Store</span>
+            </Link>
+          </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
             <span style={{ fontSize: '0.82rem', color: '#D1D5DB' }}>
-              Engine Mode: <strong style={{ color: metrics.mode === 'OPTIMIZED' ? '#F59E0B' : '#FFFFFF' }}>{metrics.mode}</strong>
+              Mode: <strong style={{ color: metrics.mode === 'OPTIMIZED' ? 'var(--accent-yellow)' : '#FFFFFF' }}>{metrics.mode}</strong>
             </span>
             <button
               onClick={() => globalTracker.exportCSV()}
@@ -203,39 +212,51 @@ export default function BenchmarkCockpit() {
             
             {/* Mode A: Baseline */}
             <div style={{
-              background: '#FEF2F2',
-              border: '1.5px solid #FCA5A5',
+              background: '#FFFFFF',
+              border: '1px solid var(--border-subtle)',
               borderRadius: '12px',
-              padding: '1.5rem'
+              padding: '1.75rem',
+              boxShadow: 'var(--shadow-card)'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#B91C1C', fontWeight: 800, fontSize: '1.15rem', marginBottom: '0.6rem' }}>
-                <Layers size={22} color="#DC2626" />
-                <span>Mode A: Baseline (The Normal Way)</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#0A0A0A', fontWeight: 800, fontSize: '1.15rem' }}>
+                  <Layers size={22} color="#0A0A0A" />
+                  <span>Mode A: Baseline</span>
+                </div>
+                <span style={{ background: '#FEE2E2', color: '#B91C1C', padding: '3px 8px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: 800 }}>
+                  THE NORMAL WAY
+                </span>
               </div>
               <p style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
                 The browser waits until you <strong>click</strong> a shoe. Only then does it send a request over the internet to fetch data from the server.
               </p>
-              <div style={{ background: '#FEE2E2', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem', color: '#991B1B', fontWeight: 700 }}>
-                🐢 <strong>Result:</strong> User waits <strong>100ms to 400ms</strong> while a loading spinner appears.
+              <div style={{ background: '#F9FAFB', border: '1px solid #E5E7EB', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem', color: '#4B5563', fontWeight: 600 }}>
+                🐢 <strong style={{ color: '#B91C1C' }}>Result:</strong> User waits <strong>100ms to 400ms</strong> while a loading spinner appears.
               </div>
             </div>
 
             {/* Mode B: SWR Prefetch */}
             <div style={{
-              background: '#FFFBEB',
-              border: '1.5px solid #FDE68A',
+              background: '#FFFFFF',
+              border: '2px solid #000000',
               borderRadius: '12px',
-              padding: '1.5rem'
+              padding: '1.75rem',
+              boxShadow: 'var(--shadow-card-hover)'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#B45309', fontWeight: 800, fontSize: '1.15rem', marginBottom: '0.6rem' }}>
-                <Zap size={22} color="#D97706" />
-                <span>Mode B: SWR Prefetch (The Smart Instant Way)</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#0A0A0A', fontWeight: 800, fontSize: '1.15rem' }}>
+                  <Zap size={22} color="var(--accent-yellow)" />
+                  <span>Mode B: SWR Prefetch</span>
+                </div>
+                <span style={{ background: '#000000', color: '#FFFFFF', padding: '3px 8px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: 800 }}>
+                  ⚡ PREDICTIVE INSTANT
+                </span>
               </div>
               <p style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
                 When your mouse hovers over a shoe for just <strong>&gt;100ms</strong>, the system predicts you want to see it and preloads it into local memory.
               </p>
-              <div style={{ background: '#FEF3C7', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem', color: '#92400E', fontWeight: 800 }}>
-                ⚡ <strong>Result:</strong> Page opens in <strong>under 2 milliseconds</strong>. Feels completely instant!
+              <div style={{ background: 'var(--accent-green-subtle)', border: '1px solid var(--accent-green)', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem', color: '#065F46', fontWeight: 800 }}>
+                ⚡ <strong style={{ color: '#059669' }}>Result:</strong> Page opens in <strong>under 2 milliseconds</strong>. Zero delay!
               </div>
             </div>
 
@@ -296,8 +317,8 @@ export default function BenchmarkCockpit() {
                     width: '100%',
                     padding: '0.85rem',
                     background: '#FFFFFF',
-                    border: '1.5px solid #DC2626',
-                    color: '#DC2626',
+                    border: '1.5px solid #000000',
+                    color: '#000000',
                     borderRadius: '8px',
                     fontWeight: 800,
                     fontSize: '0.9rem',
@@ -306,8 +327,11 @@ export default function BenchmarkCockpit() {
                     justifyContent: 'center',
                     gap: '0.5rem',
                     cursor: testAState.status === 'running' ? 'wait' : 'pointer',
-                    boxShadow: '0 2px 8px rgba(220, 38, 38, 0.1)'
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.15s ease'
                   }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = '#F3F4F6'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = '#FFFFFF'}
                 >
                   {testAState.status === 'running' ? (
                     <>
@@ -334,7 +358,7 @@ export default function BenchmarkCockpit() {
                     fontWeight: 700,
                     color: '#991B1B'
                   }}>
-                    ⏱️ Latency: <strong style={{ color: '#DC2626', fontSize: '1.05rem' }}>{testAState.time} ms</strong> (Noticeable Lag)
+                    ⏱️ Latency: <strong style={{ color: '#DC2626', fontSize: '1.05rem' }}>{testAState.time} ms</strong> (Noticeable Network Delay)
                   </div>
                 )}
               </div>
@@ -378,10 +402,13 @@ export default function BenchmarkCockpit() {
                     justifyContent: 'center',
                     gap: '0.5rem',
                     cursor: 'pointer',
-                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
+                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+                    transition: 'all 0.15s ease'
                   }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = '#222222'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = '#000000'}
                 >
-                  <Zap size={16} color="#FFE500" />
+                  <Zap size={16} color="var(--accent-yellow)" />
                   <span>Click to Test SWR Prefetch</span>
                 </button>
 
@@ -389,8 +416,8 @@ export default function BenchmarkCockpit() {
                   <div style={{
                     marginTop: '0.85rem',
                     padding: '0.75rem',
-                    background: '#D1FAE5',
-                    border: '1px solid #6EE7B7',
+                    background: 'var(--accent-green-subtle)',
+                    border: '1px solid var(--accent-green)',
                     borderRadius: '6px',
                     textAlign: 'center',
                     fontSize: '0.88rem',
