@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Flame, Clock, ShoppingCart } from 'lucide-react';
+import { formatPriceDKK } from '../lib/formatCurrency';
 
 export default function FlashDropCountdown({ onAddToCart }) {
   // Live ticking countdown timer
@@ -30,41 +31,25 @@ export default function FlashDropCountdown({ onAddToCart }) {
       id: 3,
       name: "Off-White x Nike Blazer Mid 'All Hallows Eve'",
       price: 620.00,
-      originalPrice: 780.00,
-      discount: "20% OFF",
-      image: "/images/products/shoe-3.jpg",
-      stockLeft: 4,
-      claimedPercent: 85
+      image: "/images/products/shoe-3.jpg"
     },
     {
       id: 6,
       name: "Air Jordan 1 Retro High OG 'Chicago Lost & Found'",
       price: 340.00,
-      originalPrice: 420.00,
-      discount: "19% OFF",
-      image: "/images/products/shoe-6.jpg",
-      stockLeft: 2,
-      claimedPercent: 92
+      image: "/images/products/shoe-6.jpg"
     },
     {
       id: 5,
       name: "Nike Air Max Flyknit Dynamic 'Deep Navy Volt'",
       price: 175.00,
-      originalPrice: 220.00,
-      discount: "20% OFF",
-      image: "/images/products/shoe-5.jpg",
-      stockLeft: 7,
-      claimedPercent: 78
+      image: "/images/products/shoe-5.jpg"
     },
     {
       id: 7,
       name: "Cyber-Chunky Runner 'Tokyo Nightfall Edition'",
       price: 210.00,
-      originalPrice: 280.00,
-      discount: "25% OFF",
-      image: "/images/products/shoe-7.jpg",
-      stockLeft: 5,
-      claimedPercent: 82
+      image: "/images/products/shoe-7.jpg"
     }
   ];
 
@@ -98,31 +83,16 @@ export default function FlashDropCountdown({ onAddToCart }) {
           <div key={item.id} className="sneaker-card" style={{ padding: '0.85rem' }}>
             <div style={{ position: 'relative', height: '170px', borderRadius: 'var(--radius-sm)', overflow: 'hidden', marginBottom: '0.85rem', background: '#F3F4F6' }}>
               <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '0.5rem' }} />
-              <span className="card-discount-badge">{item.discount}</span>
             </div>
 
-            <div style={{ fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.4rem', height: '38px', overflow: 'hidden', color: '#0A0A0A' }}>
+            <div style={{ fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.5rem', height: '38px', overflow: 'hidden', color: '#0A0A0A' }}>
               {item.name}
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '0.65rem' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '1rem' }}>
               <span style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.35rem', fontWeight: 900, letterSpacing: '-0.03em', color: '#0A0A0A' }}>
-                ${item.price.toFixed(2)}
+                {formatPriceDKK(item.price)}
               </span>
-              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                ${item.originalPrice.toFixed(2)}
-              </span>
-            </div>
-
-            {/* Inventory progress bar: 5% Green */}
-            <div style={{ marginBottom: '0.85rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
-                <span>Claimed: {item.claimedPercent}%</span>
-                <span style={{ color: 'var(--accent-green)', fontWeight: 700 }}>{item.stockLeft} left in vault</span>
-              </div>
-              <div style={{ width: '100%', height: '6px', background: '#E5E7EB', borderRadius: '3px', overflow: 'hidden' }}>
-                <div style={{ width: `${item.claimedPercent}%`, height: '100%', background: 'var(--accent-green)' }} />
-              </div>
             </div>
 
             <button

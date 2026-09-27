@@ -552,30 +552,6 @@ export default function HomePage() {
                 <li><a onClick={() => handleCategorySwitch('Streetwear Low-Tops')} style={{ cursor: 'pointer' }}>Streetwear Low-Tops</a></li>
               </ul>
             </div>
-
-            <div>
-              <div className="footer-col-title">CUSTOMER CARE</div>
-              <ul className="footer-links">
-                <li><a href="#">Order Tracking</a></li>
-                <li><a href="#">100% Authenticity Guarantee</a></li>
-                <li><a href="#">Returns &amp; Exchanges</a></li>
-                <li><a href="#">Shipping Rates &amp; Policies</a></li>
-                <li><a href="#">FAQ &amp; Support</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="footer-col-title">SECURED CHECKOUT</div>
-              <p style={{ color: '#9CA3AF', marginBottom: '1rem', fontSize: '0.82rem' }}>
-                Every purchase is protected with multi-stage authentication and 256-bit SSL encryption.
-              </p>
-              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', color: '#6B7280', fontSize: '0.75rem' }}>
-                <span style={{ background: '#1A1A1A', padding: '3px 7px', borderRadius: '3px', border: '1px solid rgba(255,255,255,0.1)' }}>VISA</span>
-                <span style={{ background: '#1A1A1A', padding: '3px 7px', borderRadius: '3px', border: '1px solid rgba(255,255,255,0.1)' }}>MASTERCARD</span>
-                <span style={{ background: '#1A1A1A', padding: '3px 7px', borderRadius: '3px', border: '1px solid rgba(255,255,255,0.1)' }}>AMEX</span>
-                <span style={{ background: '#1A1A1A', padding: '3px 7px', borderRadius: '3px', border: '1px solid rgba(255,255,255,0.1)' }}>APPLE PAY</span>
-              </div>
-            </div>
           </div>
 
           <div style={{

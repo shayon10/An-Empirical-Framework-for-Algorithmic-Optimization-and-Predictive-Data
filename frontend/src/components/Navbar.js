@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Search, ShoppingBag, X, Zap, ArrowRight, Loader2 } from 'lucide-react';
+import { formatPriceDKK } from '../lib/formatCurrency';
 
 const CATEGORY_ITEMS = [
   { label: '🔥 All Sneakers', value: 'All' },
@@ -286,7 +287,7 @@ export default function Navbar({
                       {/* Price & Action */}
                       <div style={{ textAlign: 'right', flexShrink: 0 }}>
                         <span style={{ fontSize: '0.9rem', fontWeight: 800, color: '#0A0A0A' }}>
-                          ${item.price.toFixed(2)}
+                          {formatPriceDKK(item.price)}
                         </span>
                         <div style={{ fontSize: '0.68rem', color: '#059669', fontWeight: 700 }}>
                           Verified Deadstock

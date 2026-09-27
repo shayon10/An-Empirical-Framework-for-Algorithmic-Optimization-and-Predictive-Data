@@ -58,9 +58,9 @@ const CATEGORY_CONFIGS = {
   'flash-drops': {
     name: 'Flash Drops',
     apiCategory: 'Limited Grails & Drops',
-    title: '⚡ FLASH DROPS // UP TO 40% OFF',
-    tagline: 'Urgent limited allocations, member-exclusive price drops, and clearance footwear vault.',
-    badge: 'UP TO 40% OFF'
+    title: '⚡ FLASH DROPS // LIMITED VAULT',
+    tagline: 'Urgent limited allocations, member-exclusive releases, and rare footwear vault.',
+    badge: 'LIMITED VAULT'
   }
 };
 
@@ -368,23 +368,6 @@ export default function CategoryPage() {
                 <li><Link href="/category/streetwear-low-tops">Streetwear Low-Tops</Link></li>
                 <li><Link href="/category/flash-drops">Flash Drops</Link></li>
               </ul>
-            </div>
-
-            <div>
-              <div className="footer-col-title">CUSTOMER CARE</div>
-              <ul className="footer-links">
-                <li><a href="#">Order Tracking</a></li>
-                <li><a href="#">100% Authenticity Guarantee</a></li>
-                <li><a href="#">Returns &amp; Exchanges</a></li>
-                <li><a href="#">FAQ &amp; Support</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="footer-col-title">SECURED CHECKOUT</div>
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.82rem' }}>
-                Every purchase is protected with multi-stage authentication and 256-bit SSL encryption.
-              </p>
             </div>
           </div>
 

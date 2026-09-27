@@ -49,24 +49,10 @@ export default function HeroBanner({ onShopClick }) {
           encapsulated Nike Air cushioning, and dual-layer verified authentication.
         </p>
 
-        {/* Price & Discount Bar */}
+        {/* Price in Danish Krone (kr.) */}
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginBottom: '2rem' }}>
           <span style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '2.6rem', fontWeight: 900, letterSpacing: '-0.04em', color: '#0A0A0A' }}>
-            $189.99
-          </span>
-          <span style={{ fontSize: '1.25rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-            $240.00
-          </span>
-          <span style={{
-            background: 'var(--accent-yellow-subtle)',
-            color: '#B45309',
-            fontWeight: 800,
-            fontSize: '0.85rem',
-            padding: '0.25rem 0.65rem',
-            borderRadius: '4px',
-            border: '1px solid rgba(245, 158, 11, 0.3)'
-          }}>
-            SAVE 21%
+            1.399 kr.
           </span>
         </div>
 

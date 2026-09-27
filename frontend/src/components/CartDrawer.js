@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { X, Trash2, ArrowRight, ShieldCheck, ShoppingBag } from 'lucide-react';
+import { formatPriceDKK } from '../lib/formatCurrency';
 
 export default function CartDrawer({ isOpen, onClose, cartItems, onRemoveItem }) {
   if (!isOpen) return null;
@@ -63,7 +64,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onRemoveItem })
                       Size: {item.size || 'US 9.5'} • Qty: {item.quantity || 1}
                     </div>
                     <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0A0A0A', marginTop: '0.25rem' }}>
-                      ${item.price.toFixed(2)}
+                      {formatPriceDKK(item.price)}
                     </div>
                   </div>
                   <button 
@@ -79,12 +80,12 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onRemoveItem })
           )}
         </div>
 
-        {/* Footer Checkout Summary (30% Black Primary CTA with 5% Green Guarantee) */}
+        {/* Footer Checkout Summary */}
         {cartItems.length > 0 && (
           <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>
               <span>Subtotal:</span>
-              <strong style={{ color: '#0A0A0A' }}>${subtotal.toFixed(2)}</strong>
+              <strong style={{ color: '#0A0A0A' }}>{formatPriceDKK(subtotal)}</strong>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.85rem' }}>
               <span>Shipping:</span>
@@ -92,13 +93,13 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onRemoveItem })
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.25rem', fontWeight: 800, marginBottom: '1.25rem', color: '#0A0A0A' }}>
               <span>Total:</span>
-              <span style={{ color: '#0A0A0A' }}>${subtotal.toFixed(2)}</span>
+              <span style={{ color: '#0A0A0A' }}>{formatPriceDKK(subtotal)}</span>
             </div>
 
             <button 
               className="btn-primary" 
               style={{ width: '100%', justifyContent: 'center', padding: '0.95rem' }}
-              onClick={() => alert(`Simulated Checkout for $${subtotal.toFixed(2)} via Verified Vault Payment!`)}
+              onClick={() => alert(`Simulated Checkout for ${formatPriceDKK(subtotal)} via Verified Vault Payment!`)}
             >
               <span>Checkout Order</span>
               <ArrowRight size={16} />

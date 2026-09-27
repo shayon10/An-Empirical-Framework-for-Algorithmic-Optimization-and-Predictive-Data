@@ -12,6 +12,7 @@ import {
   ArrowLeft, Star, ShieldCheck, ShoppingBag, Zap, 
   Truck, RotateCcw, Heart, CheckCircle2 
 } from 'lucide-react';
+import { formatPriceDKK } from '../../../lib/formatCurrency';
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -182,11 +183,6 @@ export default function ProductDetailPage() {
             boxShadow: 'var(--shadow-card)'
           }}>
             <div style={{ position: 'absolute', top: '1rem', left: '1rem', display: 'flex', gap: '0.5rem' }}>
-              {product.discountPercent > 0 && (
-                <span className="card-discount-badge" style={{ position: 'static' }}>
-                  -{product.discountPercent}% OFF
-                </span>
-              )}
               <span style={{
                 background: 'var(--accent-green-subtle)',
                 border: '1px solid var(--accent-green)',
@@ -254,7 +250,7 @@ export default function ProductDetailPage() {
               <span style={{ color: '#059669', fontWeight: 700 }}>Verified Deadstock</span>
             </div>
 
-            {/* Price Box */}
+            {/* Price Box in Danish Krone (kr.) */}
             <div style={{
               display: 'flex',
               alignItems: 'baseline',
@@ -265,25 +261,8 @@ export default function ProductDetailPage() {
               marginBottom: '1.75rem'
             }}>
               <span style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.03em', color: '#0A0A0A' }}>
-                ${product.price.toFixed(2)}
+                {formatPriceDKK(product.price)}
               </span>
-              {product.originalPrice > product.price && (
-                <span style={{ fontSize: '1.3rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                  ${product.originalPrice.toFixed(2)}
-                </span>
-              )}
-              {product.discountPercent > 0 && (
-                <span style={{
-                  background: 'var(--accent-yellow-subtle)',
-                  color: '#B45309',
-                  fontSize: '0.8rem',
-                  fontWeight: 800,
-                  padding: '0.2rem 0.55rem',
-                  borderRadius: '4px'
-                }}>
-                  SAVE ${(product.originalPrice - product.price).toFixed(2)} ({product.discountPercent}%)
-                </span>
-              )}
             </div>
 
             {/* Description */}

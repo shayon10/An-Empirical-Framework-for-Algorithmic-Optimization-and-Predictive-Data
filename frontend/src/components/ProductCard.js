@@ -7,6 +7,7 @@ import globalSWRCache from '../lib/cache/swrCache';
 import globalTracker from '../lib/metrics/performanceTracker';
 import { getProductById } from '../lib/api/client';
 import { Star, ShoppingBag, ArrowRight, ShieldCheck } from 'lucide-react';
+import { formatPriceDKK } from '../lib/formatCurrency';
 
 export default function ProductCard({ product, onAddToCart }) {
   const router = useRouter();
@@ -72,13 +73,6 @@ export default function ProductCard({ product, onAddToCart }) {
           className="card-img"
           loading="lazy"
         />
-
-        {/* 5% Yellow Discount Badge */}
-        {product.discountPercent > 0 && (
-          <span className="card-discount-badge">
-            -{product.discountPercent}% OFF
-          </span>
-        )}
       </div>
 
       {/* Product Information */}
@@ -109,12 +103,9 @@ export default function ProductCard({ product, onAddToCart }) {
           </span>
         </div>
 
-        {/* Pricing Row (30% Black Text) */}
+        {/* Pricing Row (30% Black Text in Danish Krone kr.) */}
         <div className="card-price-row">
-          <span className="current-price">${product.price.toFixed(2)}</span>
-          {product.originalPrice > product.price && (
-            <span className="original-price">${product.originalPrice.toFixed(2)}</span>
-          )}
+          <span className="current-price">{formatPriceDKK(product.price)}</span>
         </div>
 
         {/* Action Buttons (30% Black Primary CTA) */}
