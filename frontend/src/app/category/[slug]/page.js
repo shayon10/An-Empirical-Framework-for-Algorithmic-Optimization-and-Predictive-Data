@@ -143,27 +143,28 @@ export default function CategoryPage() {
   };
 
   return (
-    <div style={{ background: '#000000', minHeight: '100vh', color: '#FFFFFF' }}>
+    <div style={{ background: 'var(--bg-canvas)', minHeight: '100vh', color: 'var(--text-main)' }}>
       {/* Header Navigation */}
       <Navbar 
-        cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
+        cartCount={cartItems.reduce((acc, i) => acc + (i.quantity || 1), 0)}
         onOpenCart={() => setIsCartOpen(true)}
       />
 
       {/* Category Hero Banner */}
       <div style={{
-        background: 'linear-gradient(135deg, #0A0A0A 0%, #111111 100%)',
+        background: '#FFFFFF',
         borderBottom: '1px solid var(--border-subtle)',
-        padding: '3rem 0 2.5rem'
+        padding: '3rem 0 2.5rem',
+        boxShadow: 'var(--shadow-card)'
       }}>
         <div className="container">
           {/* Breadcrumb Navigation */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1.25rem' }}>
             <Link href="/" style={{ color: 'var(--text-secondary)' }}>Home</Link>
             <ChevronRight size={14} />
-            <Link href="/category/all" style={{ color: 'var(--text-secondary)' }}>Categories</Link>
+            <Link href="/" style={{ color: 'var(--text-secondary)' }}>Categories</Link>
             <ChevronRight size={14} />
-            <span style={{ color: 'var(--accent-yellow)', fontWeight: 700 }}>{categoryConfig.name}</span>
+            <span style={{ color: '#0A0A0A', fontWeight: 800 }}>{categoryConfig.name}</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem' }}>
@@ -172,23 +173,28 @@ export default function CategoryPage() {
                 display: 'inline-block',
                 background: 'var(--accent-yellow)',
                 color: '#000000',
+                fontFamily: 'var(--font-sport)',
+                fontStyle: 'italic',
                 fontSize: '0.72rem',
                 fontWeight: 900,
                 padding: '0.2rem 0.6rem',
                 borderRadius: 'var(--radius-sm)',
                 marginBottom: '0.75rem',
-                letterSpacing: '0.05em'
+                letterSpacing: '0.04em'
               }}>
                 {categoryConfig.badge}
               </div>
 
               <h1 style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: '2.5rem',
-                fontWeight: 800,
-                lineHeight: 1.15,
+                fontFamily: 'var(--font-sport)',
+                fontStyle: 'italic',
+                fontSize: '2.8rem',
+                fontWeight: 900,
+                letterSpacing: '-0.04em',
+                lineHeight: 1.05,
                 marginBottom: '0.75rem',
-                textTransform: 'uppercase'
+                textTransform: 'uppercase',
+                color: '#0A0A0A'
               }}>
                 {categoryConfig.title}
               </h1>
@@ -199,14 +205,14 @@ export default function CategoryPage() {
             </div>
 
             <div style={{
-              background: '#0D0D0D',
-              border: '1px solid var(--border-subtle)',
+              background: '#F9FAFB',
+              border: '1px solid #E5E7EB',
               padding: '1.25rem 1.75rem',
               borderRadius: 'var(--radius-md)',
               textAlign: 'center'
             }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block' }}>AVAILABLE IN VAULT</span>
-              <strong style={{ fontSize: '1.8rem', fontFamily: 'var(--font-heading)', color: 'var(--accent-yellow)', fontWeight: 800 }}>
+              <strong style={{ fontSize: '2rem', fontFamily: 'var(--font-sport)', fontStyle: 'italic', color: '#0A0A0A', fontWeight: 900 }}>
                 {totalProducts}
               </strong>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'block' }}>Verified Pairs</span>
@@ -244,12 +250,13 @@ export default function CategoryPage() {
               value={sortBy}
               onChange={(e) => { setSortBy(e.target.value); setPage(1); }}
               style={{
-                background: '#0D0D0D',
-                border: '1px solid var(--border-subtle)',
-                color: '#FFFFFF',
+                background: '#FFFFFF',
+                border: '1px solid var(--border-medium)',
+                color: '#0A0A0A',
                 padding: '0.45rem 0.85rem',
                 borderRadius: 'var(--radius-sm)',
                 fontSize: '0.82rem',
+                fontWeight: 600,
                 outline: 'none',
                 cursor: 'pointer'
               }}
@@ -340,7 +347,7 @@ export default function CategoryPage() {
         <div className="container">
           <div className="footer-grid">
             <div>
-              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.85rem' }}>
+              <div style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.35rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', marginBottom: '0.85rem' }}>
                 <span>SNEAKER</span><span style={{ color: 'var(--accent-yellow)' }}>PULSE</span>
               </div>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem' }}>

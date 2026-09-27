@@ -38,10 +38,11 @@
   --accent-emerald: #10B981;
   --accent-gold: #F59E0B;
 
-  /* Unique Uniform Typography for All Over Website */
-  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* High-Performance Sportswear Typography System (Helvetica Neue Bold/Black Italic) */
+  --font-sport: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica", Arial, sans-serif;
+  --font-heading: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica", Arial, sans-serif;
   --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'Space Grotesk', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -59,17 +60,33 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: var(--font-body) !important;
 }
 
 html, body {
   background-color: var(--bg-canvas);
   color: var(--text-main);
-  font-family: var(--font-body) !important;
+  font-family: var(--font-body);
   min-height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* ==============================================================================
+   HIGH-PERFORMANCE SPORTSWEAR HEADINGS & BRANDING (HELVETICA NEUE BOLD/BLACK ITALIC)
+   ============================================================================== */
+h1, h2, h3, h4,
+.sport-heading,
+.store-brand,
+.hero-heading,
+.flash-title,
+.category-hero-title,
+.catalog-title {
+  font-family: var(--font-sport);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
 }
 
 a {
@@ -178,10 +195,11 @@ button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.35rem;
-  letter-spacing: -0.03em;
+  font-family: var(--font-sport);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.45rem;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   color: #FFFFFF;
 }
@@ -189,6 +207,8 @@ button {
 .brand-badge {
   background: var(--accent-yellow);
   color: #000000;
+  font-family: var(--font-sport);
+  font-style: italic;
   font-size: 0.68rem;
   font-weight: 900;
   padding: 0.15rem 0.45rem;
@@ -378,11 +398,12 @@ button {
 }
 
 .hero-heading {
-  font-family: var(--font-heading);
-  font-size: 3.2rem;
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-family: var(--font-sport);
+  font-size: 3.4rem;
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
   margin-bottom: 1.25rem;
   color: #0A0A0A;
   text-transform: uppercase;
@@ -412,14 +433,16 @@ button {
   gap: 0.5rem;
   background: #000000;
   color: #FFFFFF;
-  font-weight: 800;
+  font-family: var(--font-sport);
+  font-weight: 900;
+  font-style: italic;
   font-size: 0.88rem;
   padding: 0.85rem 1.6rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 }
 
 .btn-primary:hover {
@@ -436,14 +459,16 @@ button {
   background: #FFFFFF;
   color: #000000;
   border: 1.5px solid #000000;
-  font-weight: 700;
+  font-family: var(--font-sport);
+  font-weight: 900;
+  font-style: italic;
   font-size: 0.88rem;
   padding: 0.85rem 1.6rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 }
 
 .btn-secondary:hover {
@@ -498,17 +523,19 @@ button {
 }
 
 .card-brand {
+  font-family: var(--font-sport);
+  font-style: italic;
   font-size: 0.72rem;
   color: var(--text-muted);
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   margin-bottom: 0.25rem;
 }
 
 .card-title {
-  font-family: var(--font-heading);
-  font-size: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.96rem;
   font-weight: 700;
   line-height: 1.35;
   color: #0A0A0A;
@@ -530,9 +557,11 @@ button {
 }
 
 .current-price {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 800;
+  font-family: var(--font-sport);
+  font-style: italic;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
   color: #0A0A0A;
 }
 
@@ -555,13 +584,16 @@ button {
   gap: 0.4rem;
   background: #000000;
   color: #FFFFFF;
+  font-family: var(--font-sport);
+  font-style: italic;
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 900;
   padding: 0.7rem 0.5rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
   text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .btn-add-cart:hover {
@@ -670,11 +702,13 @@ button {
 }
 
 .flash-title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sport);
+  font-size: 1.65rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.04em;
   color: #0A0A0A;
+  text-transform: uppercase;
 }
 
 .countdown-box {
@@ -685,11 +719,17 @@ button {
   color: #FFFFFF;
   padding: 0.45rem 1rem;
   border-radius: var(--radius-md);
-  font-weight: 800;
+  font-family: var(--font-sport);
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -0.02em;
 }
 
 .countdown-digit {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  font-family: var(--font-sport);
+  font-style: italic;
+  font-weight: 900;
   color: var(--accent-yellow);
 }
 

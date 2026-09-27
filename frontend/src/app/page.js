@@ -316,7 +316,7 @@ export default function HomePage() {
             }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
-                  <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 800, color: '#0A0A0A' }}>
+                  <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.75rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: '#0A0A0A' }}>
                     {searchQuery ? `SEARCH: "${searchQuery}"` : selectedCategory === 'All' ? 'ALL SNEAKERS' : selectedCategory.toUpperCase()}
                   </h2>
                   {searchQuery && (
@@ -328,8 +328,10 @@ export default function HomePage() {
                         gap: '0.25rem',
                         background: '#000000',
                         color: '#FFFFFF',
+                        fontFamily: 'var(--font-sport)',
+                        fontStyle: 'italic',
                         fontSize: '0.72rem',
-                        fontWeight: 700,
+                        fontWeight: 900,
                         padding: '3px 8px',
                         borderRadius: '4px',
                         cursor: 'pointer'
@@ -443,10 +445,10 @@ export default function HomePage() {
           <section style={{ marginTop: '5rem', paddingTop: '3rem', borderTop: '1px solid var(--border-subtle)' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
               <div>
-                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--accent-yellow)', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 900, fontFamily: 'var(--font-sport)', fontStyle: 'italic', color: 'var(--accent-yellow)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                   CURATED SILHOUETTES
                 </span>
-                <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', fontWeight: 800, color: '#0A0A0A' }}>
+                <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.8rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: '#0A0A0A' }}>
                   Air Jordan Retro Highlights
                 </h2>
               </div>
@@ -457,7 +459,10 @@ export default function HomePage() {
                   alignItems: 'center',
                   gap: '0.4rem',
                   fontSize: '0.85rem',
-                  fontWeight: 800,
+                  fontFamily: 'var(--font-sport)',
+                  fontStyle: 'italic',
+                  fontWeight: 900,
+                  textTransform: 'uppercase',
                   color: '#0A0A0A',
                   cursor: 'pointer'
                 }}
@@ -480,10 +485,10 @@ export default function HomePage() {
           <section style={{ marginTop: '4rem', paddingTop: '3rem', borderTop: '1px solid var(--border-subtle)' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
               <div>
-                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#059669', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 900, fontFamily: 'var(--font-sport)', fontStyle: 'italic', color: '#059669', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                   LIMITED GRAILS
                 </span>
-                <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', fontWeight: 800, color: '#0A0A0A' }}>
+                <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.8rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: '#0A0A0A' }}>
                   Off-White Collaborations Vault
                 </h2>
               </div>
@@ -526,7 +531,7 @@ export default function HomePage() {
         <div className="container">
           <div className="footer-grid">
             <div>
-              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.35rem', fontWeight: 800, marginBottom: '0.85rem', color: '#FFFFFF' }}>
+              <div style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.35rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', marginBottom: '0.85rem', color: '#FFFFFF' }}>
                 <span>SNEAKER</span><span style={{ color: 'var(--accent-yellow)' }}>PULSE</span> <span style={{ fontSize: '0.75rem', background: '#FFFFFF', color: '#000000', padding: '2px 6px', borderRadius: '3px' }}>VAULT</span>
               </div>
               <p style={{ color: '#9CA3AF', lineHeight: 1.6, marginBottom: '1.25rem' }}>

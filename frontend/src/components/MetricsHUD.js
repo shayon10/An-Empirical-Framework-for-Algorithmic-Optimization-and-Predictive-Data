@@ -78,9 +78,10 @@ export default function MetricsHUD() {
           border: '1px solid rgba(255, 255, 255, 0.2)',
           borderRadius: '8px',
           padding: '0.65rem 1.25rem',
-          fontSize: '0.82rem',
-          fontWeight: 800,
-          fontFamily: 'var(--font-heading)',
+          fontWeight: 900,
+          fontStyle: 'italic',
+          letterSpacing: '-0.02em',
+          fontFamily: 'var(--font-sport)',
           boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
           zIndex: 100000,
           display: 'flex',
@@ -278,9 +279,10 @@ export default function MetricsHUD() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '0 2px' }}>
               <div style={{
                 fontSize: '0.52rem',
-                fontFamily: 'var(--font-heading)',
-                fontWeight: 800,
-                letterSpacing: '0.05em',
+                fontFamily: 'var(--font-sport)',
+                fontStyle: 'italic',
+                fontWeight: 900,
+                letterSpacing: '-0.02em',
                 color: '#6B7280',
                 textTransform: 'uppercase',
                 lineHeight: 1.1

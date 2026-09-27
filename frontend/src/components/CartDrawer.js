@@ -15,7 +15,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onRemoveItem })
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid var(--border-subtle)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <ShoppingBag size={20} color="#0A0A0A" />
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 800, color: '#0A0A0A' }}>
+            <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.25rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: '#0A0A0A' }}>
               YOUR BAG ({cartItems.length})
             </h2>
           </div>

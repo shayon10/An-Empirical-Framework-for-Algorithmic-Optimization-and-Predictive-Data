@@ -15,7 +15,7 @@ export default function CategoryCircles({ selectedCategory, onSelectCategory }) 
   return (
     <section style={{ marginBottom: '3.5rem' }} className="scroll-reveal">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', fontWeight: 800, color: '#0A0A0A' }}>
+        <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.5rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: '#0A0A0A' }}>
           SHOP BY SILHOUETTE
         </h2>
         <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>

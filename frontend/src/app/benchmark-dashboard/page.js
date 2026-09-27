@@ -199,7 +199,7 @@ export default function BenchmarkCockpit() {
             <span>Academic Research Cockpit • Jarin Tasnim (Supervised by Fati Tahiru)</span>
           </div>
 
-          <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.4rem', fontWeight: 800, lineHeight: 1.15, marginBottom: '0.75rem', color: '#0A0A0A' }}>
+          <h1 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '2.4rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', lineHeight: 1.15, marginBottom: '0.75rem', color: '#0A0A0A' }}>
             The Speed Test Cockpit: Making Online Footwear Shopping Instant
           </h1>
 
@@ -277,7 +277,7 @@ export default function BenchmarkCockpit() {
               <Sparkles size={16} color="var(--accent-green)" />
               <span>Interactive Hands-On Demonstration</span>
             </div>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', fontWeight: 800, color: '#0A0A0A' }}>
+            <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.6rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: '#0A0A0A' }}>
               Feel the Difference in Real Time
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
@@ -447,7 +447,7 @@ export default function BenchmarkCockpit() {
               <span style={{ fontSize: '0.75rem', color: '#D97706', fontWeight: 800, textTransform: 'uppercase' }}>
                 CONTROLLED SCIENTIFIC TESTBED
               </span>
-              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 800, margin: '0.2rem 0 0.4rem', color: '#FFFFFF' }}>
+              <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.5rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', margin: '0.2rem 0 0.4rem', color: '#FFFFFF' }}>
                 Run Automated 30-Trial Benchmark
               </h2>
               <p style={{ fontSize: '0.9rem', color: '#9CA3AF' }}>
@@ -500,7 +500,7 @@ export default function BenchmarkCockpit() {
         {/* 4. RESULTS ACROSS 3 NETWORK ENVIRONMENTS (Light/White Cards with Colored Bars) */}
         <div style={{ marginBottom: '2.5rem' }}>
           <div style={{ marginBottom: '1.25rem' }}>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 800, color: '#0A0A0A' }}>
+            <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.5rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: '#0A0A0A' }}>
               Tested Across 3 Real-World Network Environments
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
@@ -651,7 +651,7 @@ export default function BenchmarkCockpit() {
           marginBottom: '2.5rem',
           boxShadow: 'var(--shadow-card)'
         }}>
-          <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', fontWeight: 800, marginBottom: '1.25rem', color: '#0A0A0A' }}>
+          <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.4rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', marginBottom: '1.25rem', color: '#0A0A0A' }}>
             Frequently Asked Questions (Explained Simply)
           </h2>
 
@@ -695,7 +695,7 @@ export default function BenchmarkCockpit() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
             <div>
-              <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 800, color: '#0A0A0A' }}>
+              <h3 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.25rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: '#0A0A0A' }}>
                 Live Recorded Navigation Runs ({benchmarkLogs.length} logged)
               </h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>

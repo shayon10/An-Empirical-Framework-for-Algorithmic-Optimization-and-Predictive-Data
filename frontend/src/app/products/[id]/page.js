@@ -238,7 +238,7 @@ export default function ProductDetailPage() {
               {product.brand} • {product.category}
             </div>
 
-            <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.4rem', fontWeight: 800, lineHeight: 1.15, marginBottom: '0.85rem', color: '#0A0A0A' }}>
+            <h1 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '2.4rem', fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '0.85rem', color: '#0A0A0A' }}>
               {product.name}
             </h1>
 
@@ -264,7 +264,7 @@ export default function ProductDetailPage() {
               borderBottom: '1px solid var(--border-subtle)',
               marginBottom: '1.75rem'
             }}>
-              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', fontWeight: 800, color: '#0A0A0A' }}>
+              <span style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.03em', color: '#0A0A0A' }}>
                 ${product.price.toFixed(2)}
               </span>
               {product.originalPrice > product.price && (
@@ -374,7 +374,7 @@ export default function ProductDetailPage() {
         {/* Similar Verified Silhouettes */}
         {related.length > 0 && (
           <section style={{ marginTop: '5rem', paddingTop: '3rem', borderTop: '1px solid var(--border-subtle)' }}>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', fontWeight: 800, marginBottom: '1.5rem', textTransform: 'uppercase', color: '#0A0A0A' }}>
+            <h2 style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.6rem', fontWeight: 900, letterSpacing: '-0.04em', marginBottom: '1.5rem', textTransform: 'uppercase', color: '#0A0A0A' }}>
               Similar Verified Silhouettes
             </h2>
             <div style={{

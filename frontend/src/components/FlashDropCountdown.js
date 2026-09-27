@@ -106,7 +106,7 @@ export default function FlashDropCountdown({ onAddToCart }) {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '0.65rem' }}>
-              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 800, color: '#0A0A0A' }}>
+              <span style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '1.35rem', fontWeight: 900, letterSpacing: '-0.03em', color: '#0A0A0A' }}>
                 ${item.price.toFixed(2)}
               </span>
               <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>

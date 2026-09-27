@@ -51,7 +51,7 @@ export default function HeroBanner({ onShopClick }) {
 
         {/* Price & Discount Bar */}
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginBottom: '2rem' }}>
-          <span style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', fontWeight: 800, color: '#0A0A0A' }}>
+          <span style={{ fontFamily: 'var(--font-sport)', fontStyle: 'italic', fontSize: '2.6rem', fontWeight: 900, letterSpacing: '-0.04em', color: '#0A0A0A' }}>
             $189.99
           </span>
           <span style={{ fontSize: '1.25rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
