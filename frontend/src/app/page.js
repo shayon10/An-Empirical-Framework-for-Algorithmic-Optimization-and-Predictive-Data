@@ -10,7 +10,7 @@ import CartDrawer from '../components/CartDrawer';
 import { getProducts, getCategories } from '../lib/api/client';
 import { 
   Filter, RefreshCw, ChevronLeft, ChevronRight, 
-  ShieldCheck, CheckCircle2, Zap, ArrowRight, X
+  CheckCircle2, ArrowRight, X
 } from 'lucide-react';
 
 const CATEGORY_TABS = [
@@ -278,27 +278,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Quick Guarantees (5% Green & Yellow accents) */}
-            <div style={{
-              background: '#F9FAFB',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: 'var(--radius-sm)',
-              padding: '1rem',
-              fontSize: '0.75rem',
-              color: 'var(--text-secondary)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.65rem'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#059669', fontWeight: 700 }}>
-                <ShieldCheck size={14} color="var(--accent-green)" />
-                <span>100% Deadstock Guarantee</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#B45309', fontWeight: 700 }}>
-                <Zap size={14} color="var(--accent-yellow)" />
-                <span>Instant Predictive Fetch</span>
-              </div>
-            </div>
           </aside>
 
           {/* Right Product Grid Column */}
