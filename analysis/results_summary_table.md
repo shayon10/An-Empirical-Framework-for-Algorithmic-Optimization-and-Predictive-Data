@@ -5,12 +5,12 @@
 
 | Network Profile | Architecture Mode | Mean Latency (ms) | Std Dev (ms) | Median (ms) | 95th %ile (ms) | Mean TTFB (ms) | Total Requests | Latency Reduction (%) | Welch t-test (t, p) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Broadband** | Baseline (On-Demand) | 40.85 | 6.32 | 40.91 | 50.81 | 22.84 | 30 | — | — |
-| **Broadband** | Optimized (Hover SWR) | 22.46 | 17.55 | 32.27 | 46.28 | 11.48 | 40 | **45.02%** | t=5.40, p<0.0001 |
-| **Fast 4G** | Baseline (On-Demand) | 111.96 | 16.53 | 112.55 | 134.86 | 93.59 | 30 | — | — |
-| **Fast 4G** | Optimized (Hover SWR) | 35.22 | 48.87 | 4.49 | 128.76 | 28.11 | 36 | **68.54%** | t=8.15, p<0.0001 |
-| **Throttled 3G** | Baseline (On-Demand) | 404.97 | 47.78 | 405.14 | 489.24 | 386.35 | 30 | — | — |
-| **Throttled 3G** | Optimized (Hover SWR) | 170.30 | 208.32 | 5.82 | 476.43 | 161.31 | 34 | **57.95%** | t=6.01, p<0.0001 |
+| **Broadband** | Baseline (On-Demand) | 36.77 | 5.78 | 36.52 | 47.06 | 19.81 | 30 | — | — |
+| **Broadband** | Optimized (Hover SWR) | 20.53 | 18.56 | 6.22 | 46.51 | 10.41 | 34 | **44.18%** | t=4.58, p<0.0001 |
+| **Fast 4G** | Baseline (On-Demand) | 115.42 | 17.00 | 116.13 | 144.35 | 97.22 | 30 | — | — |
+| **Fast 4G** | Optimized (Hover SWR) | 32.37 | 46.70 | 5.44 | 121.56 | 24.90 | 34 | **71.95%** | t=9.15, p<0.0001 |
+| **Throttled 3G** | Baseline (On-Demand) | 410.06 | 51.05 | 402.77 | 497.22 | 391.77 | 30 | — | — |
+| **Throttled 3G** | Optimized (Hover SWR) | 154.65 | 202.06 | 5.21 | 443.13 | 145.63 | 36 | **62.29%** | t=6.71, p<0.0001 |
 
 ## Key Academic Findings & Statistical Interpretation:
 1. **Statistically Significant Latency Reduction**: In all three network profiles (Broadband, Fast 4G, and Throttled 3G), Welch's t-test demonstrated extremely high statistical significance ($p < 0.0001$), confirming rejection of the null hypothesis.

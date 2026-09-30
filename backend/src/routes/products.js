@@ -10,6 +10,9 @@ router.get('/categories', controller.getCategories);
 // Empirical Experiment Telemetry
 router.post('/telemetry', controller.recordTelemetry);
 router.get('/telemetry', controller.getTelemetry);
-router.delete('/telemetry', controller.clearTelemetry);
+
+// Objective 4 (O4) 180-Run Benchmark Data API
+router.get('/benchmark/results', controller.getBenchmarkResults);
+router.post('/benchmark/results', controller.saveBenchmarkResults);
 
 module.exports = router;
