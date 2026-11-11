@@ -99,12 +99,12 @@ npm run analyze
 
 | Network Profile | Mode | Mean Latency (ms) | Std Dev (ms) | Mean TTFB (ms) | Total Requests | Latency Reduction (%) | Welch t-test |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Broadband** | Baseline | 40.85 | 6.32 | 22.84 | 30 | — | — |
-| **Broadband** | Optimized | 22.46 | 17.55 | 11.48 | 40 | **45.02%** | $p < 0.0001$ |
-| **Fast 4G** | Baseline | 111.96 | 16.53 | 93.59 | 30 | — | — |
-| **Fast 4G** | Optimized | 35.22 | 48.87 | 28.11 | 36 | **68.54%** | $p < 0.0001$ |
-| **Throttled 3G** | Baseline | 404.97 | 47.78 | 386.35 | 30 | — | — |
-| **Throttled 3G** | Optimized | 170.30 | 208.32 | 161.31 | 34 | **57.95%** | $p < 0.0001$ |
+| **Broadband** | Baseline | 36.77 | 5.78 | 19.81 | 30 | — | — |
+| **Broadband** | Optimized | 20.53 | 18.56 | 10.41 | 34 | **44.18%** | $p < 0.0001$ |
+| **Fast 4G** | Baseline | 115.42 | 17.00 | 97.22 | 30 | — | — |
+| **Fast 4G** | Optimized | 32.37 | 46.70 | 24.90 | 34 | **71.95%** | $p < 0.0001$ |
+| **Throttled 3G** | Baseline | 410.06 | 51.05 | 391.77 | 30 | — | — |
+| **Throttled 3G** | Optimized | 154.65 | 202.06 | 145.63 | 36 | **62.29%** | $p < 0.0001$ |
 
 ---
 
