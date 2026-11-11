@@ -42,7 +42,7 @@ async function checkBackendOnline() {
 async function runBenchmark() {
   console.log('================================================================');
   console.log('🧪 Starting 180-Run Controlled Empirical Benchmark Suite');
-  console.log('   Proposer: Jarin Tasnim | Supervisor: Fati Tahiru');
+  console.log('   Proposer: Jarin Tasnim');
   console.log('================================================================');
 
   const isOnline = await checkBackendOnline();

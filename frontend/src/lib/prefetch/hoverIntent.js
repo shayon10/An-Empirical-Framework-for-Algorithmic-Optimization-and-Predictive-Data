@@ -1,5 +1,11 @@
 // Hover-Intent Predictive Prefetching Engine
 // Objective 3: Triggering on >100ms pointer dwell to anticipate user navigation
+//
+// The prefetcher only decides WHEN to fetch. The fetcher function it is given is
+// responsible for the request itself and for storing the result in the cache
+// (see fetchWithStrategy in api/client.js, which also de-duplicates in-flight requests).
+// The same handlers serve pointer hover and keyboard focus.
+// A request that has already been sent is not cancelled when the pointer leaves.
 
 import globalSWRCache from '../cache/swrCache';
 
@@ -86,15 +92,8 @@ class HoverIntentPrefetcher {
       this.notify();
 
       try {
-        const fetchStart = performance.now();
-        const data = await fetcher();
-        const fetchDuration = performance.now() - fetchStart;
-
-        // Store into SWR cache marked as prefetched
-        globalSWRCache.set(key, data, {
-          prefetched: true,
-          fetchDuration
-        });
+        // The fetcher stores the result in the SWR cache marked as prefetched
+        await fetcher();
       } catch (err) {
         console.warn(`[Prefetcher] Failed to prefetch key: ${key}`, err);
       } finally {
@@ -128,10 +127,18 @@ class HoverIntentPrefetcher {
     this.notify();
   }
 
+  reset() {
+    this.cancelAll();
+    this.prefetchHistory = [];
+    this.notify();
+  }
+
   getHistory() {
     return [...this.prefetchHistory];
   }
 }
+
+export { HoverIntentPrefetcher };
 
 export const globalPrefetcher = new HoverIntentPrefetcher();
 export default globalPrefetcher;

@@ -47,7 +47,6 @@ app.get('/', (req, res) => {
   res.json({
     title: 'An Empirical Framework for Algorithmic Optimization and Predictive Data-Fetching in Full-Stack Web Applications',
     researcher: 'Jarin Tasnim',
-    supervisor: 'Fati Tahiru',
     endpoints: [
       'GET /api/products',
       'GET /api/products/:id',

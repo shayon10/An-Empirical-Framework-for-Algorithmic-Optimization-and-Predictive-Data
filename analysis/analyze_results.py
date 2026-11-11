@@ -2,7 +2,7 @@
 """
 Empirical Data Analysis & Statistical Evaluation Script
 For: An Empirical Framework for Algorithmic Optimization and Predictive Data-Fetching in Full-Stack Web Applications
-Researcher: Jarin Tasnim | Supervisor: Fati Tahiru
+Researcher: Jarin Tasnim
 """
 
 import os
@@ -50,19 +50,50 @@ def compute_stats(values):
     p95 = sorted_v[min(p95_idx, n - 1)]
     return {'mean': mean, 'std': std, 'median': median, 'p95': p95}
 
+def _betacf(a, b, x):
+    """Continued fraction for the regularized incomplete beta function (Lentz's method)."""
+    tiny = 1e-300
+    qab, qap, qam = a + b, a + 1.0, a - 1.0
+    c, d = 1.0, 1.0 - qab * x / qap
+    if abs(d) < tiny: d = tiny
+    d = 1.0 / d; h = d
+    for m in range(1, 300):
+        m2 = 2 * m
+        aa = m * (b - m) * x / ((qam + m2) * (a + m2))
+        d = 1.0 + aa * d; d = tiny if abs(d) < tiny else d
+        c = 1.0 + aa / c; c = tiny if abs(c) < tiny else c
+        d = 1.0 / d; h *= d * c
+        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))
+        d = 1.0 + aa * d; d = tiny if abs(d) < tiny else d
+        c = 1.0 + aa / c; c = tiny if abs(c) < tiny else c
+        d = 1.0 / d; delta = d * c; h *= delta
+        if abs(delta - 1.0) < 1e-12: break
+    return h
+
+def _betai(a, b, x):
+    if x <= 0.0: return 0.0
+    if x >= 1.0: return 1.0
+    bt = math.exp(math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b) + a * math.log(x) + b * math.log(1.0 - x))
+    if x < (a + 1.0) / (a + b + 2.0):
+        return bt * _betacf(a, b, x) / a
+    return 1.0 - bt * _betacf(b, a, 1.0 - x) / b
+
+def t_two_sided_p(t_stat, df):
+    """Two-sided p-value of Student's t distribution, computed (not assumed)."""
+    return _betai(df / 2.0, 0.5, df / (df + t_stat * t_stat))
+
 def welch_ttest(sample1, sample2):
+    """Welch's two-sample t-test. Returns (|t|, df, two-sided p), all computed from the data."""
     n1, n2 = len(sample1), len(sample2)
     m1, m2 = sum(sample1)/n1, sum(sample2)/n2
     v1 = sum((x - m1)**2 for x in sample1) / (n1 - 1)
     v2 = sum((x - m2)**2 for x in sample2) / (n2 - 1)
     se = math.sqrt((v1 / n1) + (v2 / n2))
     if se == 0:
-        return 0, 1.0
+        return 0, 1.0, 1.0
     t_stat = (m1 - m2) / se
-    # Approximate degree of freedom
     df = ((v1/n1 + v2/n2)**2) / (((v1/n1)**2)/(n1-1) + ((v2/n2)**2)/(n2-1))
-    # For large t with df > 30, p < 0.0001
-    return abs(t_stat), df
+    return abs(t_stat), df, t_two_sided_p(t_stat, df)
 
 def generate_svg_latency_chart(results):
     svg = '''<svg width="720" height="420" xmlns="http://www.w3.org/2000/svg" style="background:#0e131f; font-family:'Plus Jakarta Sans', -apple-system, sans-serif;">
@@ -174,12 +205,13 @@ def main():
     table_lines = [
         "# Empirical Benchmark Results: Baseline vs. Predictive Prefetching + SWR",
         "**Project Title:** An Empirical Framework for Algorithmic Optimization and Predictive Data-Fetching in Full-Stack Web Applications  ",
-        "**Proposer:** Jarin Tasnim | **Supervisor:** Fati Tahiru  ",
+        "**Proposer:** Jarin Tasnim  ",
         f"**Sample Size:** N=30 test runs per scenario (180 total experimental runs)  \n",
         "| Network Profile | Architecture Mode | Mean Latency (ms) | Std Dev (ms) | Median (ms) | 95th %ile (ms) | Mean TTFB (ms) | Total Requests | Latency Reduction (%) | Welch t-test (t, p) |",
         "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
     ]
 
+    findings = []
     for sc in scenarios:
         b = results[sc]['BASELINE']
         o = results[sc]['OPTIMIZED']
@@ -188,19 +220,20 @@ def main():
         o_lat = o['latency']['mean']
         reduction = ((b_lat - o_lat) / b_lat) * 100
 
-        t_val, df = welch_ttest(b['raw_latencies'], o['raw_latencies'])
+        t_val, df, p_val = welch_ttest(b['raw_latencies'], o['raw_latencies'])
+        findings.append((sc, reduction, o['latency']['median'], (o['requests'] - b['requests']) / b['requests'] * 100, p_val))
 
         table_lines.append(
             f"| **{sc}** | Baseline (On-Demand) | {b['latency']['mean']:.2f} | {b['latency']['std']:.2f} | {b['latency']['median']:.2f} | {b['latency']['p95']:.2f} | {b['ttfb']['mean']:.2f} | {b['requests']} | — | — |"
         )
         table_lines.append(
-            f"| **{sc}** | Optimized (Hover SWR) | {o['latency']['mean']:.2f} | {o['latency']['std']:.2f} | {o['latency']['median']:.2f} | {o['latency']['p95']:.2f} | {o['ttfb']['mean']:.2f} | {o['requests']} | **{reduction:.2f}%** | t={t_val:.2f}, p<0.0001 |"
+            f"| **{sc}** | Optimized (Hover SWR) | {o['latency']['mean']:.2f} | {o['latency']['std']:.2f} | {o['latency']['median']:.2f} | {o['latency']['p95']:.2f} | {o['ttfb']['mean']:.2f} | {o['requests']} | **{reduction:.2f}%** | t={t_val:.2f}, df={df:.1f}, p={p_val:.2e} |"
         )
 
-    table_lines.append("\n## Key Academic Findings & Statistical Interpretation:")
-    table_lines.append("1. **Statistically Significant Latency Reduction**: In all three network profiles (Broadband, Fast 4G, and Throttled 3G), Welch's t-test demonstrated extremely high statistical significance ($p < 0.0001$), confirming rejection of the null hypothesis.")
-    table_lines.append("2. **Amplified Gain on Constrained Networks**: Under Throttled 3G, navigation latency dropped from over 400ms down to sub-50ms (achieving over **80% latency reduction**).")
-    table_lines.append("3. **Controlled Request Overhead**: Total HTTP request volume grew by approximately 20-30%, which represents the bounded cost of speculative hover-intent prefetching. This trade-off is strongly favorable for high-interaction web applications.")
+    table_lines.append("\n## Notes on interpretation")
+    table_lines.append("These rows are SIMULATED outputs of the benchmark model (run_synthetic_benchmark.js / Benchmark Cockpit), not browser measurements. For measured results run `npm run benchmark:browser` and `npm run analyze:browser`.")
+    for sc, reduction, o_median, extra, p_val in findings:
+        table_lines.append(f"- **{sc}**: modelled mean latency reduction {reduction:.2f}%, Optimised median {o_median:.2f} ms, modelled extra requests {extra:+.1f}%, Welch p = {p_val:.2e} (computed).")
 
     summary_text = '\n'.join(table_lines)
     with open(SUMMARY_TABLE_PATH, 'w', encoding='utf-8') as f:

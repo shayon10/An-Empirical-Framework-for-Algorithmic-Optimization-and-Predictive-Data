@@ -2,7 +2,7 @@
 # ==============================================================================
 # One-Click Launch Script for Mac / Linux
 # Thesis: An Empirical Framework for Algorithmic Optimization and Predictive Data-Fetching
-# Proposer: Jarin Tasnim | Supervisor: Fati Tahiru
+# Proposer: Jarin Tasnim
 # ==============================================================================
 
 set -e

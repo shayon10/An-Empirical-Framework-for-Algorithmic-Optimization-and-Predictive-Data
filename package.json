@@ -1,7 +1,7 @@
 {
   "name": "empirical-predictive-prefetch-framework",
   "version": "1.0.0",
-  "description": "An Empirical Framework for Algorithmic Optimization and Predictive Data-Fetching in Full-Stack Web Applications - Jarin Tasnim & Fati Tahiru",
+  "description": "An Empirical Framework for Algorithmic Optimization and Predictive Data-Fetching in Full-Stack Web Applications - Jarin Tasnim",
   "private": true,
   "scripts": {
     "setup": "npm run setup:backend && npm run setup:frontend",
@@ -13,11 +13,14 @@
     "build": "cd frontend && npm run build",
     "benchmark": "node benchmark/run_synthetic_benchmark.js",
     "analyze": "python3 analysis/analyze_results.py",
-    "test-all": "npm run benchmark && npm run analyze"
+    "test-all": "npm run benchmark && npm run analyze",
+    "test": "cd frontend && npm test",
+    "benchmark:browser": "node benchmark/run_browser_benchmark.js",
+    "analyze:browser": "python analysis/analyze_measured.py"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "playwright-core": "^1.65.0"
   },
-  "author": "Jarin Tasnim",
-  "contributors": ["Fati Tahiru"]
+  "author": "Jarin Tasnim"
 }

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import globalPrefetcher from '../lib/prefetch/hoverIntent';
 import globalSWRCache from '../lib/cache/swrCache';
 import globalTracker from '../lib/metrics/performanceTracker';
-import { getProductById } from '../lib/api/client';
+import { prefetchProductById } from '../lib/api/client';
 import { Star, ShoppingBag, ArrowRight, ShieldCheck } from 'lucide-react';
 import { formatPriceDKK } from '../lib/formatCurrency';
 
@@ -29,15 +29,15 @@ export default function ProductCard({ product, onAddToCart }) {
   };
 
   // Pointer Enter - Prefetches silently in the background after 100ms dwell (no visual badges)
-  const handlePointerEnter = () => {
+  // Touch has no hover: touch navigation falls back to on-demand fetching.
+  // Keyboard focus uses the same delayed prefetch as pointer hover.
+  const handlePointerEnter = (e) => {
+    if (e && e.pointerType === 'touch') return;
     if (globalSWRCache.has(cacheKey)) return;
 
     globalPrefetcher.onPointerEnter(
       cacheKey,
-      async () => {
-        const res = await getProductById(product.id);
-        return res.data;
-      }
+      () => prefetchProductById(product.id)
     );
   };
 
@@ -47,8 +47,16 @@ export default function ProductCard({ product, onAddToCart }) {
     globalPrefetcher.onPointerLeave(cacheKey);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && e.target === e.currentTarget) {
+      handleInspect(e);
+    }
+  };
+
   const handleInspect = (e) => {
     e.preventDefault();
+    // The user has committed to this product: a pending dwell timer is no longer needed
+    globalPrefetcher.onPointerLeave(cacheKey);
     globalTracker.startNavigation(`/products/${product.id}`);
     router.push(`/products/${product.id}`);
   };
@@ -60,6 +68,11 @@ export default function ProductCard({ product, onAddToCart }) {
       onMouseMove={handleMouseMove}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
+      onFocus={handlePointerEnter}
+      onBlur={handlePointerLeave}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      data-product-id={product.id}
       style={{
         transform: `perspective(800px) rotateX(${cardTilt.rotateX}deg) rotateY(${cardTilt.rotateY}deg)`
       }}

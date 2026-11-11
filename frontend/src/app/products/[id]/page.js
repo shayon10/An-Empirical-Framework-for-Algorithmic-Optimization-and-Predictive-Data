@@ -43,16 +43,17 @@ export default function ProductDetailPage() {
         const record = globalTracker.endNavigation(`/products/${id}`, {
           cacheHit: res.fromCache,
           prefetched: res.prefetched,
+          deduplicated: res.deduplicated,
           ttfb: res.ttfb,
           latencyMs: elapsed,
-          payloadBytes: 3200
+          payloadBytes: res.payloadBytes || 0
         });
 
         setNavTelemetry({
           latencyMs: record ? record.latencyMs : parseFloat(elapsed.toFixed(2)),
           fromCache: res.data?.fromCache || res.fromCache,
           prefetched: res.data?.prefetched || res.prefetched,
-          ttfb: res.data?.ttfb || res.ttfb
+          ttfb: res.ttfb
         });
       } catch (err) {
         console.error('Failed to load sneaker detail:', err);
@@ -63,6 +64,16 @@ export default function ProductDetailPage() {
 
     loadProduct();
   }, [id]);
+
+  // Measured render point: the first animation frame after the product data are in the DOM.
+  // Used by the automated browser benchmark together with the 'research-nav-start' mark.
+  useEffect(() => {
+    if (!product || String(product.id) !== String(id)) return;
+    const frame = requestAnimationFrame(() => {
+      performance.mark('research-detail-rendered');
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [product, id]);
 
   const handleAddToCart = () => {
     if (!product) return;

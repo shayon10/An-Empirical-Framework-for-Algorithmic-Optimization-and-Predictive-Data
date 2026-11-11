@@ -18,14 +18,19 @@ try {
 // In-memory telemetry log for academic evaluations
 const telemetryLogs = [];
 
-// Helper to simulate network latency if requested via query or header
+// Controlled added-response delay for the latency conditions.
+// The client sends the delay of the selected profile in the X-Simulated-Delay header
+// (or the ?delay= query parameter). Only the three study values are accepted:
+// 15 ms (Broadband), 85 ms (Fast 4G) and 380 ms (Throttled 3G). Any other value is ignored.
+// No jitter, bandwidth limit or packet loss is applied.
+const PERMITTED_DELAYS_MS = [15, 85, 380];
+
 const applySimulatedDelay = async (req) => {
   const delayParam = req.query.delay || req.headers['x-simulated-delay'];
-  if (delayParam) {
-    const ms = parseInt(delayParam, 10);
-    if (!isNaN(ms) && ms > 0) {
-      await new Promise(resolve => setTimeout(resolve, ms));
-    }
+  if (!delayParam) return;
+  const ms = parseInt(delayParam, 10);
+  if (PERMITTED_DELAYS_MS.includes(ms)) {
+    await new Promise(resolve => setTimeout(resolve, ms));
   }
 };
 

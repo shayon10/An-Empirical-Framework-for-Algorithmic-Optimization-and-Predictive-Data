@@ -27,6 +27,9 @@ class PerformanceTracker {
       // Wire cache notifications to trigger tracker re-render
       globalSWRCache.subscribe(() => this.notify());
       globalPrefetcher.subscribe(() => this.notify());
+
+      // Handle used by the automated browser benchmark (benchmark/run_browser_benchmark.js)
+      window.__research = { tracker: this, cache: globalSWRCache, prefetcher: globalPrefetcher };
     }
   }
 
@@ -58,6 +61,9 @@ class PerformanceTracker {
   }
 
   startNavigation(targetRoute) {
+    if (typeof performance !== 'undefined' && performance.mark) {
+      performance.mark('research-nav-start');
+    }
     this.activeNavStart = {
       targetRoute,
       startTime: performance.now(),
@@ -70,7 +76,8 @@ class PerformanceTracker {
 
     const endTime = performance.now();
     const latencyMs = parseFloat((endTime - this.activeNavStart.startTime).toFixed(2));
-    const ttfb = meta.ttfb ? parseFloat(meta.ttfb.toFixed(2)) : parseFloat((latencyMs * 0.45).toFixed(2));
+    // TTFB is only recorded when an HTTP request was actually made (null for a cache hit)
+    const ttfb = typeof meta.ttfb === 'number' ? parseFloat(meta.ttfb.toFixed(2)) : null;
 
     const record = {
       id: this.navHistory.length + 1,
@@ -81,6 +88,7 @@ class PerformanceTracker {
       ttfb,
       cacheHit: Boolean(meta.cacheHit),
       prefetched: Boolean(meta.prefetched),
+      deduplicated: Boolean(meta.deduplicated),
       payloadBytes: meta.payloadBytes || 0,
       timestamp: this.activeNavStart.timestamp
     };
@@ -124,8 +132,9 @@ class PerformanceTracker {
       ? parseFloat((modeNavs.reduce((acc, curr) => acc + curr.latencyMs, 0) / count).toFixed(2)) 
       : 0;
 
-    const avgTTFB = count > 0 
-      ? parseFloat((modeNavs.reduce((acc, curr) => acc + curr.ttfb, 0) / count).toFixed(2)) 
+    const ttfbNavs = modeNavs.filter(n => typeof n.ttfb === 'number');
+    const avgTTFB = ttfbNavs.length > 0
+      ? parseFloat((ttfbNavs.reduce((acc, curr) => acc + curr.ttfb, 0) / ttfbNavs.length).toFixed(2))
       : 0;
 
     const lastNav = this.navHistory[this.navHistory.length - 1] || null;
@@ -137,7 +146,7 @@ class PerformanceTracker {
       modeNavigationsCount: count,
       lastLatencyMs: lastNav ? lastNav.latencyMs : 0,
       avgLatencyMs: avgLatency,
-      lastTTFBMs: lastNav ? lastNav.ttfb : 0,
+      lastTTFBMs: lastNav && typeof lastNav.ttfb === 'number' ? lastNav.ttfb : 0,
       avgTTFBMs: avgTTFB,
       totalHttpRequests: this.totalHttpRequests,
       totalTransferredKB: parseFloat((this.totalTransferredBytes / 1024).toFixed(2)),
@@ -172,7 +181,7 @@ class PerformanceTracker {
       r.networkProfile,
       `"${r.targetRoute}"`,
       r.latencyMs,
-      r.ttfb,
+      r.ttfb === null ? '' : r.ttfb,
       r.cacheHit,
       r.prefetched,
       r.payloadBytes
@@ -194,7 +203,7 @@ class PerformanceTracker {
     this.totalHttpRequests = 0;
     this.totalTransferredBytes = 0;
     globalSWRCache.clear();
-    globalPrefetcher.cancelAll();
+    globalPrefetcher.reset();
     this.notify();
   }
 }

@@ -517,7 +517,7 @@ export default function HomePage() {
                 Global verified marketplace for authenticated high-heat sneakers, Air Jordans, Off-White grails, and performance icons.
               </p>
               <div style={{ fontSize: '0.78rem', color: '#6B7280' }}>
-                Research Evaluation Platform by Jarin Tasnim (Supervised by Fati Tahiru).
+                Research Evaluation Platform by Jarin Tasnim.
               </div>
             </div>
 

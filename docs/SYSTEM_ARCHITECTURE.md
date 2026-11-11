@@ -1,7 +1,7 @@
 # System Architecture & Technical Specifications
 
 **Project Title:** An Empirical Framework for Algorithmic Optimization and Predictive Data-Fetching in Full-Stack Web Applications  
-**Proposer:** Jarin Tasnim | **Supervisor:** Fati Tahiru  
+**Proposer:** Jarin Tasnim  
 
 ---
 

@@ -1,0 +1,63 @@
+{
+  "generated_by": "benchmark/run_browser_benchmark.js",
+  "measured": true,
+  "date": "2026-11-11T17:07:32.471Z",
+  "duration_seconds": 462,
+  "design": "2 modes x 3 delays x 30 matched trials",
+  "warmup_trials_per_cell": 3,
+  "dwell_threshold_ms": 100,
+  "delays_ms": [
+    {
+      "name": "Broadband",
+      "delay": 15
+    },
+    {
+      "name": "Fast 4G",
+      "delay": 85
+    },
+    {
+      "name": "Throttled 3G",
+      "delay": 380
+    }
+  ],
+  "interactions": [
+    {
+      "name": "hover_150_click",
+      "dwell": 150,
+      "decoy": false
+    },
+    {
+      "name": "hover_300_click",
+      "dwell": 300,
+      "decoy": false
+    },
+    {
+      "name": "hover_600_click",
+      "dwell": 600,
+      "decoy": false
+    },
+    {
+      "name": "abandoned_hover_then_click",
+      "dwell": 40,
+      "decoy": true,
+      "decoyDwell": 250
+    },
+    {
+      "name": "quick_click_no_dwell",
+      "dwell": 40,
+      "decoy": false
+    }
+  ],
+  "cache_reset": "new page load and tracker.resetAll() before every trial",
+  "frontend": "next build + next start (production)",
+  "browser": {
+    "channel": "msedge",
+    "version": "156.0.4314.58",
+    "headless": true,
+    "viewport": "1366x900"
+  },
+  "node": "v24.20.0",
+  "os": "Windows_NT 10.0.26200 (x64)",
+  "cpu": "AMD Ryzen 5 5600H with Radeon Graphics         ",
+  "rows": 180
+}

@@ -2,7 +2,7 @@
 REM ==============================================================================
 REM One-Click Windows Launch Script (Double-Click to Run)
 REM Thesis: An Empirical Framework for Algorithmic Optimization and Predictive Data-Fetching
-REM Proposer: Jarin Tasnim | Supervisor: Fati Tahiru
+REM Proposer: Jarin Tasnim
 REM ==============================================================================
 
 echo ==================================================================
